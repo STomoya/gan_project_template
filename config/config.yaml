@@ -85,6 +85,9 @@ config:
     # policy for DiffAugment
     diffaugment_policy: null
 
+    # save running output every
+    running: 10
+
     # save mode every
     save: 1000
 

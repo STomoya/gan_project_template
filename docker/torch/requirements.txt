@@ -1,6 +1,6 @@
 # tensor
 einops
 # utils
-git+https://github.com/STomoya/storch@v0.1.4
+git+https://github.com/STomoya/storch
 # cpp extension
 ninja
