@@ -49,7 +49,7 @@ config:
         latent_dim: 128
         base_channels: 64
     # arguments for discriminator
-    dicriminator:
+    discriminator:
       name: model.model.Discriminator
       params:
         base_channels: 64
