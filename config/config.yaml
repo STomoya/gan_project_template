@@ -14,6 +14,8 @@ config:
     # file to output execution status. If null, ignored.
     exec_status_output: ./execstatus.txt
 
+  train_loop: synthesis
+
   data:
     # dataset root folder
     data_root: ./data
