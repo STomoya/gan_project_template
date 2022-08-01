@@ -44,15 +44,13 @@ config:
   model:
     # arguments for generator
     generator:
-      name: model.model.Generator
-      params:
-        latent_dim: 128
-        base_channels: 64
+      class_name: model.model.Generator
+      latent_dim: 128
+      base_channels: 64
     # arguments for discriminator
     discriminator:
-      name: model.model.Discriminator
-      params:
-        base_channels: 64
+      class_name: model.model.Discriminator
+      base_channels: 64
 
   train:
     # epochs to train (selectively use iterations)
@@ -66,16 +64,14 @@ config:
     optimizer:
       # optimizer for generator
       generator:
-        name: torch.optim.Adam
-        params:
-          lr: 0.0002
-          betas: [0.5, 0.999]
+        class_name: torch.optim.Adam
+        lr: 0.0002
+        betas: [0.5, 0.999]
       # optimizer for discriminator
       discriminator:
-        name: torch.optim.Adam
-        params:
-          lr: 0.0002
-          betas: [0.5, 0.999]
+        class_name: torch.optim.Adam
+        lr: 0.0002
+        betas: [0.5, 0.999]
 
     # use EMA?
     ema: false
