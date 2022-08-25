@@ -76,7 +76,7 @@ config:
         betas: [0.5, 0.999]
 
     # use EMA?
-    ema: false
+    ema: true
     # decay for EMA update
     ema_decay: 0.999
 
@@ -86,8 +86,10 @@ config:
     # save running output every
     running: 10
 
-    # save mode every
+    # save model every n batches
     save: 1000
+    # save model every n epochs
+    epoch_save: null
 
   env:
     # device. 'cpu' or 'cuda' or 'cuda:{0,1,2...}'

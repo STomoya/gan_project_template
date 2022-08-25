@@ -87,7 +87,8 @@ def train(config):
                 G_loss = adv_fn.g_loss(fake_logits)
 
             optimizer_step(G_loss, optim_G, scaler, zero_grad=True, set_to_none=True, update_scaler=True)
-            update_ema(G, G_ema, tcfg.ema_decay, copy_buffers=True)
+            if tcfg.ema:
+                update_ema(G, G_ema, tcfg.ema_decay, copy_buffers=True)
 
             if tcfg.running > 0 and status.batches_done % tcfg.running == 0:
                 save_image(fake, folder.root / f'running.jpg', normalize=True, value_range=(-1, 1))
@@ -114,8 +115,9 @@ def train(config):
                 break
 
         epochs += 1
-        kbatches = status.get_kbatches()
-        state_dict = G_ema.state_dict() if tcfg.ema else G.state_dict()
-        torch.save(state_dict, folder.model / f'epochs{epochs}_{kbatches}.jpg')
+        if tcfg.epoch_save is not None and epochs % tcfg.epoch_save == 0:
+            kbatches = status.get_kbatches()
+            state_dict = G_ema.state_dict() if tcfg.ema else G.state_dict()
+            torch.save(state_dict, folder.model / f'epochs{epochs}_{kbatches}.jpg')
 
     status.plot(folder.root / 'progress')
