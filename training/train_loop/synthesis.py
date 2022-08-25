@@ -51,9 +51,9 @@ def train(config):
     gp_fn = loss.r1_regularizer()
 
     # status
-    status = Status(len(dataset)*tcfg.epochs, False, folder.root / cfg.experiments.log_file,
-        cfg.experiments.log_interval, cfg.experiments.name)
-    status.log(config, G, optim_G, D, optim_D, dataset)
+    status = Status(len(dataset)*tcfg.epochs, False, folder.root / cfg.experiment.log_file,
+        cfg.experiment.log_interval, cfg.experiment.name)
+    status.log_stuff(config, G, optim_G, D, optim_D, dataset)
 
     scaler = GradScaler() if amp else None
     const_z = torch.randn((tcfg.test_sample, latent_dim), device=device)
